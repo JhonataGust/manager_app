@@ -19,6 +19,9 @@
             <v-progress-circular indeterminate color="#3498db" class='loding_animation'
                 :size="50"></v-progress-circular>
         </div>
+        <div class="alert_animation" v-if='is_alert'>
+            {{alert_message}}
+        </div>
         <?php
         if (strpos($_SERVER['REQUEST_URI'], '/ajax') == false) {
             if (@$_SESSION['user_login'] == true) {
@@ -44,10 +47,18 @@
                     form_password: '',
                     form_con_password: '',
                     tab: null,
-                    url: 'http://localhost/manager_app'
+                    url: 'http://localhost/manager_app',
+                    is_alert: false,
+                    alert_message: null
                 };
             },
             methods: {
+                showAlert(alert_text, time) {
+                    this.is_alert = true
+                    setTimeout(() => {
+                        this.alert_message = alert_text
+                    }, time)
+                },
                 loginAccount() {
                     const formData = new FormData();
                     formData.append('cnpj', this.form_cnpj);
@@ -56,6 +67,8 @@
                         .then((response) => {
                             if (response.data.success == true) {
                                 window.location.href = this.url
+                            }else {
+                                this.showAlert('error', 1000)
                             }
                         })
                 },
@@ -64,6 +77,9 @@
                     formData.append('cnpj', this.form_cnpj);
                     formData.append('password', this.password);
                     axios.post(`${this.url}/ajax/user_handle.php`, formData)
+                        .catch((response) => {
+                            console.log(response)
+                        })
                         .then((response) => {
                             if (response.data.success == true) {
                                 window.location.href = this.url
