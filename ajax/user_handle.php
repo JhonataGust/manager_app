@@ -5,7 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = new User();
     $user->setCnpj($_POST['cnpj']);
     $user->setPassword($_POST['password']);
-    $user->insertInto($conn);
+    if (!$user->saveSession($conn, $_POST['cnpj'], $_POST['password'])) {
+        $user->insertInto($conn);
+    }
+
     if ($user->saveSession($conn, $_POST['cnpj'], $_POST['password'])) {
         $response = array("success" => true);
         $jsonResponse = json_encode($response);

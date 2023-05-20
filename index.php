@@ -60,7 +60,15 @@
                         })
                 },
                 createAccount() {
-                    this.loading_page = false
+                    const formData = new FormData();
+                    formData.append('cnpj', this.form_cnpj);
+                    formData.append('password', this.password);
+                    axios.post(`${this.url}/ajax/user_handle.php`, formData)
+                        .then((response) => {
+                            if (response.data.success == true) {
+                                window.location.href = this.url
+                            }
+                        })
                 }
             }
         })
