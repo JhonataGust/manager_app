@@ -9,5 +9,4 @@ define('DB_PASSWORD', '');
 define('DB_NAME', 'manager_database');
 
 $conn = new ConnectPDO(DB_SERVER, DB_NAME, DB_USERNAME, DB_PASSWORD);
-$conn->conectar();
 ?>
