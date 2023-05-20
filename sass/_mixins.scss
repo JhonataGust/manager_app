@@ -1,0 +1,11 @@
+@mixin flex-center() {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+@mixin gradient-background() {
+    background: rgb(3,198,184);
+    background: linear-gradient(0deg, rgba(3,198,184,1) 5%, rgba(3,75,105,1) 59%, rgba(0,0,53,1) 100%);
+}

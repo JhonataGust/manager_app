@@ -1,24 +1,50 @@
+<div id="particles"></div>
 <div class="login_screen" id="login_screen">
     <div class="inputs_login" v-if="login_active">
-        <v-text-field label="Digite seu CNPJ" variant="solo" v-model="form_cnpj"></v-text-field>
-        <v-text-field label="Senha" variant="solo" v-model="form_password"></v-text-field>
-        <v-btn block color="#3498db" size="x-large" style="color:#fff" @click="loginAccount">
+        <img src="./assets/img/logo.png" alt="Manager App logo" class="logo_app">
+        <h2 class="login_description">Entre na sua conta</h2>
+
+        <input type="text" 
+                name="cnpj"
+                v-model="form_cnpj" 
+                class="input" 
+                placeholder="Digite seu CNPJ">
+        
+        <input type="password" 
+                name="password" 
+                v-model="form_con_password" 
+                class="input" 
+                placeholder="Digite sua Senha">
+                
+        <v-btn @click="loginAccount" class="entry_btn">
             Entrar
         </v-btn>
     </div>
-    <div v-else>
-        <v-text-field label="Digite seu CNPJ" variant="solo" v-model="form_cnpj"></v-text-field>
-        <v-text-field label="Senha" variant="solo" v-model="form_password"></v-text-field>
-        <v-text-field label="Confirmar Senha" variant="solo" v-model="form_con_password"></v-text-field>
-        <v-btn block color="#3498db" size="x-large" style="color:#fff" @click="createAccount">
+    <div class="inputs_login" v-else>
+        <img src="./assets/img/logo.png" alt="Manager App logo" class="logo_app">
+        <h2 class="login_description">Crie sua conta</h2>
+
+        <input type="text" 
+                name="cnpj" 
+                v-model="form_cnpj" 
+                class="input" 
+                placeholder="Digite seu CNPJ">
+        
+        <input type="password" 
+                name="password" 
+                v-model="form_password" 
+                class="input" 
+                placeholder="Digite sua Senha">
+
+        <input type="password" 
+                name="password" 
+                v-model="form_con_password" 
+                class="input" 
+                placeholder="Confirmar Senha">
+
+        <v-btn @click="createAccount" class="entry_btn">
             Entrar
         </v-btn>
     </div>
-    <div style="
-        color:#ccc;
-        margin-top:10px;
-        cursor:pointer;
-    ">
-        <a @click="login_active = !login_active">{{ login_active ? 'Ainda não possui conta?' : 'Ja possui conta?' }}</a>
-    </div>
+    <a @click="login_active = !login_active">{{ login_active ? 'Ainda não possui conta?' : 'Ja possui conta?' }}</a>
 </div>
