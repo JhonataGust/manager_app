@@ -5,10 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = new User();
     $user->setCnpj($_POST['cnpj']);
     $user->setPassword($_POST['password']);
-    if (!$user->saveSession($conn, $_POST['cnpj'], $_POST['password'])) {
-        $user->insertInto($conn);
-    }
-
+    $user->insertInto($conn);
     if ($user->saveSession($conn, $_POST['cnpj'], $_POST['password'])) {
         $response = array("success" => true);
         $jsonResponse = json_encode($response);
@@ -30,4 +27,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     // O tipo da requisição é POST
     echo 'A requisição é do tipo POST.';
 }
+
 ?>
