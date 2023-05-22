@@ -32,6 +32,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.2.5/dist/vuetify.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.2.5/dist/vuetify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!--Sources to use js libraries-->
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -69,7 +70,7 @@
                 loginAccount() {
                     const formData = new FormData();
                     formData.append('cnpj', this.form_cnpj);
-                    formData.append('password', this.password);
+                    formData.append('password', this.form_password);
                     axios.post(`${this.url}/ajax/user_handle.php`, formData)
                         .then((response) => {
                             if (response.data.success == true) {
@@ -82,7 +83,7 @@
                 createAccount() {
                     const formData = new FormData();
                     formData.append('cnpj', this.form_cnpj);
-                    formData.append('password', this.password);
+                    formData.append('password', this.form_password);
                     axios.post(`${this.url}/ajax/user_handle.php`, formData)
                         .catch((response) => {
                             console.log(response)
