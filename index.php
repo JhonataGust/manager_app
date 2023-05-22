@@ -26,8 +26,6 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.2.5/dist/vuetify.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.2.5/dist/vuetify.min.js"></script>
-
-    <!--Sources to use js libraries-->
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
     <script src="./scripts/backgroundAnimation.js"></script>
@@ -58,9 +56,8 @@
                 }
             }
         })
-            .use(vuetify)
-            .mount("#app");
+        .use(vuetify)
+        .mount("#app");
     </script>
 </body>
-
 </html>

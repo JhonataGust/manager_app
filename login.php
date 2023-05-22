@@ -12,7 +12,7 @@
         
         <input type="password" 
                 name="password" 
-                v-model="form_con_password" 
+                v-model="form_password" 
                 class="input" 
                 placeholder="Digite sua Senha">
                 
