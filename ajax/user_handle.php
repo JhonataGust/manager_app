@@ -30,5 +30,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     // O tipo da requisição é POST
     echo 'A requisição é do tipo POST.';
 }
-
 ?>
