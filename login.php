@@ -6,15 +6,24 @@
 
         <input type="text" 
                 name="cnpj"
-                v-model="form_cnpj" 
+                v-model="form_cnpj"
+                maxlength="18"
                 class="input" 
+                :class="form_cnpj.length < 18 && form_cnpj.length > 0 ? 'error' : ''"
                 placeholder="Digite seu CNPJ">
         
-        <input type="password" 
-                name="password" 
-                v-model="form_password" 
-                class="input" 
-                placeholder="Digite sua Senha">
+        <section class="pwdGroup">
+            <input type="password"
+                    name="password"
+                    v-model="form_password"
+                    class="input"
+                    :class="!validatePassword && form_password.length > 0 ? 'error' : ''"
+                    placeholder="Digite sua Senha">
+            <span id="togglePassword" class="password-toggle" @click="togglePasswordVisibility">
+                <i id="eyeIcon" class="far fa-eye"></i>
+            </span>
+        </section>
+        <span v-if="!validatePassword && form_password.length > 0" class="span_error">Insira pelo menos 8 caracteres válidos</span>
                 
         <v-btn @click="loginAccount" class="entry_btn">
             Entrar
@@ -25,16 +34,25 @@
         <h2 class="login_description">Crie sua conta</h2>
 
         <input type="text" 
-                name="cnpj" 
-                v-model="form_cnpj" 
+                name="cnpj"
+                v-model="form_cnpj"
+                maxlength="18"
                 class="input" 
+                :class="form_cnpj.length < 18 && form_cnpj.length > 0 ? 'error' : ''"
                 placeholder="Digite seu CNPJ">
         
-        <input type="password" 
-                name="password" 
-                v-model="form_password" 
-                class="input" 
-                placeholder="Digite sua Senha">
+        <section class="pwdGroup">
+            <input type="password"
+                    name="password"
+                    v-model="form_password"
+                    class="input"
+                    :class="!validatePassword && form_password.length > 0 ? 'error' : ''"
+                    placeholder="Digite sua Senha">
+            <span id="togglePassword" class="password-toggle" @click="togglePasswordVisibility">
+                <i id="eyeIcon" class="far fa-eye"></i>
+            </span>
+        </section>
+        <span v-if="!validatePassword && form_password.length > 0" class="span_error">Insira pelo menos 8 caracteres válidos</span>
 
         <input type="password" 
                 name="password" 
@@ -43,7 +61,7 @@
                 placeholder="Confirmar Senha">
 
         <v-btn @click="createAccount" class="entry_btn">
-            Entrar
+            CRIAR CONTA
         </v-btn>
     </div>
     <a @click="login_active = !login_active">{{ login_active ? 'Ainda não possui conta?' : 'Ja possui conta?' }}</a>
