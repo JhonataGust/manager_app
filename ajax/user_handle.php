@@ -5,13 +5,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = new User();
     $user->setCnpj($_POST['cnpj']);
     $user->setPassword($_POST['password']);
-    $user->insertInto($conn);
-    if ($user->saveSession($conn, $_POST['cnpj'], $_POST['password'])) {
+    if ($user->saveSession($conn, $_POST['cnpj'], $_POST['password']) == true) {
         $response = array("success" => true);
         $jsonResponse = json_encode($response);
         echo $jsonResponse;
     }else{
-        $response = array("false" => true);
+        $user->insertInto($conn);
+        $response = array("success" => true);
         $jsonResponse = json_encode($response);
         echo $jsonResponse;
     }

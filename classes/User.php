@@ -27,6 +27,7 @@ class User
     public function saveSession($conn, $cnpj, $password)
     {
         $sql = 'SELECT * FROM `users` WHERE cnpj = :cnpj';
+        $conn->conectar();
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':cnpj', $cnpj);
         $stmt->execute();

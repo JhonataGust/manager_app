@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="styles/index.css"/>
+    <link rel="stylesheet" href="styles/index.css" />
     <title>Manager App</title>
 </head>
 
@@ -13,7 +13,8 @@
     <?php echo @$_SESSION['user_login'] ? '' : '<div id="particles"></div>' ?>
     <div id="app">
         <div class="main_loading" v-if='loading_page'>
-            <v-progress-circular indeterminate color="#3498db" class='loding_animation' :size="50"></v-progress-circular>
+            <v-progress-circular indeterminate color="#3498db" class='loding_animation'
+                :size="50"></v-progress-circular>
         </div>
         <div class="alert_animation" v-if='is_alert'>
             {{alert_message}}
@@ -37,7 +38,8 @@
     <!--Sources to use js libraries-->
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
+        crossorigin="anonymous"></script>
     <script src="./scripts/backgroundAnimation.js"></script>
 
     <script>
@@ -60,7 +62,15 @@
                     is_alert: false,
                     alert_message: null,
                     validatePassword: false,
-                };
+                    overlay: false,
+                    dialog: false,
+                    products_show_infos: {},
+                    p_name: '',
+                    p_description: '',
+                    p_amount: '',
+                    p_stock: '',
+                    products: []
+                }
             },
             methods: {
                 showAlert(alert_text, time) {
@@ -77,7 +87,7 @@
                         .then((response) => {
                             if (response.data.success == true) {
                                 window.location.href = this.url
-                            }else {
+                            } else {
                                 this.showAlert('error', 1000)
                             }
                         })
@@ -99,6 +109,50 @@
                 togglePasswordVisibility() {
                     let passwordInput = document.querySelector('input[name="password"]');
                     passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+                },
+                showProductInfos(data) {
+                    this.dialog = true;
+                    this.products_show_infos = data
+                },
+                createProduct() {
+                    const formData = new FormData();
+                    formData.append('name', this.p_name);
+                    formData.append('description', this.p_description);
+                    formData.append('stock', this.p_stock);
+                    formData.append('amount', this.p_amount);
+                    axios.post(`${this.url}/ajax/product_handle.php`, formData)
+                        .then((response) => {
+                            if (response.data.success == true) {
+                                this.getProducts()
+                                this.dialog = false
+                            } else {
+                                this.showAlert('error', 1000)
+                            }
+                        })
+                },
+                getProducts() {
+                    axios.get(`${this.url}/ajax/product_handle.php`)
+                        .then((response) => {
+                            this.products = response.data
+                        })
+                },
+                deleteProduct(id) {
+                    axios.delete(`${this.url}/ajax/product_handle.php?id=${id}`)
+                        .then(() => {
+                            this.getProducts()
+                        })
+                },
+                editProductInfos(params) {
+                    this.dialog = true
+                    this.p_name = params.name
+                    this.p_description = params.description
+                    this.p_amount = params.amount
+                },
+                destroySession() {
+                    axios.delete(`${this.url}/ajax/session_handle.php`)
+                        .then((response) => {
+                            window.location.href = this.url
+                        })
                 }
             },
             watch: {
@@ -109,10 +163,10 @@
 
                     for (let i = 0; i < cnpj.length && i < cnpjMask.length; i++) {
                         if (cnpjMask[i] === '#') {
-                        formattedCnpj += cnpj[i];
+                            formattedCnpj += cnpj[i];
                         } else {
-                        formattedCnpj += cnpjMask[i];
-                        formattedCnpj += cnpj[i] || '';
+                            formattedCnpj += cnpjMask[i];
+                            formattedCnpj += cnpj[i] || '';
                         }
                     }
 
@@ -121,11 +175,14 @@
                 form_password(value) {
                     let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
                     this.validatePassword = passwordRegex.test(value);
-                }   
+                }
+            },
+            mounted() {
+                this.getProducts()
             }
         })
-        .use(vuetify)
-        .mount("#app");
+            .use(vuetify)
+            .mount("#app");
     </script>
 
     <style>
@@ -162,4 +219,5 @@
         }
     </style>
 </body>
+
 </html>
