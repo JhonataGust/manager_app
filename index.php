@@ -69,6 +69,8 @@
                     p_description: '',
                     p_amount: '',
                     p_stock: '',
+                    p_supplier: '',
+                    id: null,
                     products: []
                 }
             },
@@ -83,12 +85,12 @@
                     const formData = new FormData();
                     formData.append('cnpj', this.form_cnpj);
                     formData.append('password', this.form_password);
-                    axios.post(`${this.url}/ajax/user_handle.php`, formData)
+                    axios.post(`${this.url}/ajax/user_handle.php?create=false`, formData)
                         .then((response) => {
                             if (response.data.success == true) {
                                 window.location.href = this.url
                             } else {
-                                this.showAlert('error', 1000)
+                                alert('Senha ou Cnpj Incorreto');
                             }
                         })
                 },
@@ -96,12 +98,13 @@
                     const formData = new FormData();
                     formData.append('cnpj', this.form_cnpj);
                     formData.append('password', this.form_password);
-                    axios.post(`${this.url}/ajax/user_handle.php`, formData)
+                    axios.post(`${this.url}/ajax/user_handle.php?create=true`, formData)
                         .catch((response) => {
                             console.log(response)
                         })
                         .then((response) => {
                             if (response.data.success == true) {
+                                alert('Conta Criada');
                                 window.location.href = this.url
                             }
                         })
@@ -120,8 +123,12 @@
                     formData.append('description', this.p_description);
                     formData.append('stock', this.p_stock);
                     formData.append('amount', this.p_amount);
+                    formData.append('supplier', this.p_supplier);
+                    formData.append('id', this.id)
+
                     axios.post(`${this.url}/ajax/product_handle.php`, formData)
                         .then((response) => {
+                            this.id = null
                             if (response.data.success == true) {
                                 this.getProducts()
                                 this.dialog = false
@@ -147,13 +154,25 @@
                     this.p_name = params.name
                     this.p_description = params.description
                     this.p_amount = params.amount
+                    this.id = params.id
                 },
                 destroySession() {
                     axios.delete(`${this.url}/ajax/session_handle.php`)
                         .then((response) => {
                             window.location.href = this.url
                         })
-                }
+                },
+                formatDate(date) {
+                    const dateTime = new Date(date);
+                    const day = dateTime.getDate().toString().padStart(2, '0');
+                    const month = (dateTime.getMonth() + 1).toString().padStart(2, '0');
+                    const year = dateTime.getFullYear().toString();
+                    const hour = dateTime.getHours().toString().padStart(2, '0');
+                    const minute = dateTime.getMinutes().toString().padStart(2, '0');
+                    const second = dateTime.getSeconds().toString().padStart(2, '0');
+
+                    return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
+                },
             },
             watch: {
                 form_cnpj(value) {
