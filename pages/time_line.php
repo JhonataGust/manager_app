@@ -1,11 +1,9 @@
 <v-timeline side="end">
-    <v-timeline-item
-      size="small"
-    >
-      <v-alert
-        :value="true"
-      >
-        Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
-      </v-alert>
-    </v-timeline-item>
+  <v-timeline-item size="small" v-for='item in products' :key='products.id'>
+    <v-alert :value="true">
+      Id: {{item.id}} <br/>
+      Produto: {{item.name}} <br/>
+      Ultima Alteração: {{ formatDate(item.updated_at) }} <br/>
+    </v-alert>
+  </v-timeline-item>
 </v-timeline>

@@ -16,7 +16,7 @@
                 </v-window-item>
 
                 <v-window-item value="two">
-                <?php include('pages/time_line.php') ?>
+                    <?php include('pages/time_line.php') ?>
                 </v-window-item>
 
                 <v-window-item value="three">

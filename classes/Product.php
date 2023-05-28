@@ -5,6 +5,8 @@ class Product
     private $description;
     private $amount;
     private $stock;
+    private $supplier;
+    private $updated_at;
 
     public function set_name($name)
     {
@@ -26,9 +28,17 @@ class Product
         $this->stock = $stock;
     }
 
+    public function set_supplier($supplier){
+        $this->supplier = $supplier;
+    }
+
+    public function set_updated_at($updated_at){
+        $this->updated_at = $updated_at;
+    }
+
     public function insertInto($conn)
     {
-        $sql = 'INSERT INTO `products` (name, description, amount, stock, user_id) VALUES (:name, :description, :amount, :stock, :user_id)';
+        $sql = 'INSERT INTO `products` (name, description, amount, stock, user_id, supplier, updated_at) VALUES (:name, :description, :amount, :stock, :user_id, :supplier, :updated_at)';
         $conn->conectar();
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $this->name);
@@ -36,19 +46,22 @@ class Product
         $stmt->bindParam(':amount', $this->amount);
         $stmt->bindParam(':stock', $this->stock);
         $stmt->bindParam(':user_id', $_SESSION['userId']);
-
+        $stmt->bindParam(':supplier',$this->supplier);
+        $stmt->bindParam(':updated_at', $this->updated_at);
         $stmt->execute();
     }
 
     public function updateById($conn, $id)
     {
-        $sql = 'UPDATE `products` SET name = :name, description = :description, amount = :amount, stock = :stock WHERE id = :id';
+        $sql = 'UPDATE `products` SET name = :name, description = :description, amount = :amount, stock = :stock, supplier = :supplier, updated_at = :updated_at WHERE id = :id';
         $conn->conectar();
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':amount', $this->amount);
         $stmt->bindParam(':stock', $this->stock);
+        $stmt->bindParam(':supplier', $this->supplier);
+        $stmt->bindParam(':updated_at', $this->updated_at);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute();
