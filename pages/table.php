@@ -4,7 +4,7 @@
             <span class="material-symbols-outlined">add</span>
             Criar Produto
         </v-btn>
-        <v-btn class="btn_create" @click='dialog = true'>
+        <v-btn class="btn_create" @click='generatePDF()'>
             <span class="material-symbols-outlined">picture_as_pdf</span>
         </v-btn>
     </div>

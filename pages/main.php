@@ -7,7 +7,7 @@
         <v-tabs v-model="tab" bg-color="primary">
             <v-tab value="one">Produtos</v-tab>
             <v-tab value="two"> Histórico de Mudanças</v-tab>
-            <v-tab value="three">Item Three</v-tab>
+            <v-tab value="three">Visualisar PDF Preview</v-tab>
         </v-tabs>
         <v-card-text>
             <v-window v-model="tab">
@@ -20,7 +20,7 @@
                 </v-window-item>
 
                 <v-window-item value="three">
-                    Three
+                    <?php include('pages/pdf_view.php') ?>
                 </v-window-item>
             </v-window>
         </v-card-text>

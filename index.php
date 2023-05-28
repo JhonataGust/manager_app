@@ -6,7 +6,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="styles/index.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Manager App</title>
 </head>
 
@@ -35,6 +36,9 @@
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.2.5/dist/vuetify.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.2.5/dist/vuetify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+
+
 
     <!--Sources to use js libraries-->
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -89,6 +93,7 @@
                     axios.post(`${this.url}/ajax/user_handle.php?create=false`, formData)
                         .then((response) => {
                             if (response.data.success == true) {
+                                localStorage.setItem('user_cnpj', this.form_cnpj)
                                 window.location.href = this.url
                             } else {
                                 alert('Senha ou Cnpj Incorreto');
@@ -174,6 +179,32 @@
 
                     return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
                 },
+                generatePDF() {
+                    const doc = new jsPDF();
+
+                    doc.fromHTML(`
+                    <p>CPNJ: ${localStorage.getItem('user_cnpj')}</p>
+                    <p>Quantidade: ${this.products.length}</p>
+                    <table border="1" cellpadding="8" style="font-size: 10px;">
+                        <tr>
+                            <th style="font-size: 10px; height: 20px;">ID</th>
+                            <th style="font-size: 10px; height: 20px;">Produto</th>
+                            <th style="font-size: 10px; height: 20px;">Quantidade</th>
+                            <th style="font-size: 10px; height: 20px;">Fornecedor</th>
+                        </tr>
+        ${this.products.map((item) => {
+                        return `<tr>
+                            <td>${item.id}</td>
+                            <td>${item.name}</td>
+                            <td>${item.amount}</td>
+                            <td>${item.supplier}</td>
+                        </tr>`;
+                    }).join('')}
+    </table>`, 10, 10);
+
+                    doc.save('relatorio.pdf');
+
+                }
             },
             watch: {
                 form_cnpj(value) {
