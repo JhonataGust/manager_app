@@ -1,8 +1,13 @@
 <div class="table-container">
-    <v-btn class="btn_create" @click='dialog = true'>
-        <span class="material-symbols-outlined">add</span>
-        Criar Produto
-    </v-btn>
+    <div class="table_actions">
+        <v-btn class="btn_create" @click='dialog = true'>
+            <span class="material-symbols-outlined">add</span>
+            Criar Produto
+        </v-btn>
+        <v-btn class="btn_create" @click='dialog = true'>
+            <span class="material-symbols-outlined">picture_as_pdf</span>
+        </v-btn>
+    </div>
     <div class="table">
         <div class="row header">
             <div class="cell">ID</div>
@@ -17,11 +22,11 @@
             <div class="cell">{{item.amount}}</div>
             <div class="cell">{{item.supplier}}</div>
             <div class="cell">
-                <v-btn color="primary" @click='editProductInfos(item)'>
-                    Editar
+                <v-btn class="btn_actions" @click='editProductInfos(item)'>
+                    <span class="material-symbols-outlined">edit</span>
                 </v-btn>
-                <v-btn color="red" @click='deleteProduct(item.id)'>
-                    Deletar
+                <v-btn class="btn_actions" @click='deleteProduct(item.id)'>
+                    <span class="material-symbols-outlined">delete</span>
                 </v-btn>
             </div>
         </div>

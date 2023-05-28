@@ -145,6 +145,18 @@ body {
   overflow-y: auto;
   width: 100%;
 }
+.table-container .table_actions {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+.table-container .table_actions .btn_create {
+  margin-bottom: 10px;
+  background-color: #000035;
+  color: #03C6B8;
+  display: flex;
+  align-items: center;
+}
 .table-container .table {
   display: flex;
   flex-direction: column;
@@ -168,15 +180,12 @@ body {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  gap: 3px;
   font-size: 14px;
   border: 0.5px solid #034B69;
 }
-.table-container .btn_create {
-  margin-bottom: 10px;
-  background-color: #000035;
+.table-container .table .cell .btn_actions {
   color: #03C6B8;
-  display: flex;
-  align-items: center;
 }
 .table-container::-webkit-scrollbar {
   width: 0;
