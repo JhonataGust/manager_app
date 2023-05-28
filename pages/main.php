@@ -1,4 +1,5 @@
 <section class="main_page">
+    <a class="aboutUs" href="aboutus.html" target="_blank" rel="external">About Us</a>
     <div class="log_out" @click='destroySession'>
         <span class="material-symbols-outlined">logout</span>
         <p class="log_out-phrase">Log out</p>
@@ -7,7 +8,7 @@
         <v-tabs v-model="tab" bg-color="primary">
             <v-tab value="one">Produtos</v-tab>
             <v-tab value="two"> Histórico de Mudanças</v-tab>
-            <v-tab value="three">Visualisar PDF Preview</v-tab>
+            <v-tab value="three">PDF Preview</v-tab>
         </v-tabs>
         <v-card-text>
             <v-window v-model="tab">

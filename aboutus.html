@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <link rel="stylesheet" type="text/css" href="styles.scss">
+</head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            margin: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .team-member {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        h3 {
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 5px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .team-member {
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .team-member img {
+                margin: 0 auto;
+            }
+        }
+    </style>
+<body>
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Meet the Team</h2>
+            <div class="team-member">
+                <img src="./assets/img/PersonalPhoto.png" alt="Leonardo Amador">
+                <h3>Leonardo Amador</h3>
+                <p>Role: Frontend Developer</p>
+            </div>
+            <div class="team-member">
+                <img src="./assets/img/PersonalPhoto2" alt="Jhonata Gustavo">
+                <h3>Jhonata Gustavo</h3>
+                <p>Role: Backend Developer</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Project Idea</h2>
+            <p>
+                Our project is focused on developing a web application for a web development test at college. We aim to create a user-friendly and intuitive platform that allows users to learn and practice web development concepts. The application will provide interactive coding exercises, tutorials, and a code editor for users to experiment and test their skills in real-time.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

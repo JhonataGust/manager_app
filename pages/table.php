@@ -16,8 +16,8 @@
             <div class="cell">Fornecedor</div>
             <div class="cell">Ações</div>
         </div>
-        <div class="row" v-for='item in products' :key='products.id'>
-            <div class="cell">{{item.id}}</div>
+        <div class="row" v-for='(item, index) in products' :key='products.id'>
+            <div class="cell">{{index + 1}}</div>
             <div class="cell">{{item.name}}</div>
             <div class="cell">{{item.amount}}</div>
             <div class="cell">{{item.supplier}}</div>
@@ -38,7 +38,7 @@
             <v-text-field label="Produto" variant="solo" v-model='p_name'></v-text-field>
             <v-text-field label="Quantidade" variant="solo" v-model='p_amount'></v-text-field>
             <v-text-field label="Fornecedor" variant="solo" v-model='p_supplier'></v-text-field>
-            <v-textarea label="Descrição" auto-grow variant="outlined" rows="3" row-height="25" shaped
+            <v-textarea label="Descrição" auto-grow rows="3" row-height="25" variant="solo"
                 v-model='p_description'></v-textarea>
             <div class="btn_group">
                 <v-card-actions>

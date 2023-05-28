@@ -132,6 +132,7 @@ body {
     width: 1230px;
     margin: 150px auto;
     padding: 20px;
+    
 
     .log_out {
         cursor: pointer;
@@ -149,6 +150,19 @@ body {
         .log_out-phrase {
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             margin-bottom: -5px;
+        }
+    }
+
+    .aboutUs {
+        color: white;
+        text-decoration: none;
+        float: right;        
+        font-size: 1em;
+        transition-duration: .3s;
+
+        &:hover { 
+            color: variables.$primary-color;
+            text-decoration: underline;
         }
     }
 
@@ -212,6 +226,11 @@ body {
     }
 }
 
+.v-field__input { color: #696969 !important; }
+.v-label.v-field-label { color: variables.$primary-color; }
+.v-textarea .v-field__input {
+    outline: 0px !important;
+}
 .btn_group {
     display: flex;
     flex-direction: row nowrap;
@@ -228,21 +247,52 @@ body {
             align-items: center;
             justify-content: center;
 
+            .v-btn__content {
+                display: flex;
+                transition: transform,opacity .2s cubic-bezier(.4,0,.2,1);
+                align-items: flex-end;
+            }
+
             &:hover {
-                opacity: 75%;
+                opacity: 90%;
             }
         }
     }
 }
 
-.v-field__field {
-    
+.user_info {
+    height: 30px;
+    background-image: linear-gradient(to right, variables.$secondary-color, variables.$third-color, variables.$secondary-color);
+    padding: variables.$table-padding;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.v-label.v-field-label {
-    color: variables.$primary-color;
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+        
+        padding: variables.$table-padding;
+        text-align: left;
+        border: 1px solid variables.$secondary-color;
+        font-size: variables.$table-font-size;
+    }
+
+    th {
+        background-color: variables.$third-color;
+        color: variables.$primary-color;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: variables.$table-row-background;
+    }
 }
 
-.v-field__input {
-
+p {
+    font-size: variables.$p-font-size;
+    margin-bottom: variables.$p-margin-bottom;
 }
+

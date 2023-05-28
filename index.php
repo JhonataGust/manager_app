@@ -156,11 +156,12 @@
                         })
                 },
                 editProductInfos(params) {
-                    this.dialog = true
                     this.p_name = params.name
                     this.p_description = params.description
                     this.p_amount = params.amount
+                    this.p_supplier = params.supplier
                     this.id = params.id
+                    this.dialog = true
                 },
                 destroySession() {
                     axios.delete(`${this.url}/ajax/session_handle.php`)
@@ -192,18 +193,17 @@
                             <th style="font-size: 10px; height: 20px;">Quantidade</th>
                             <th style="font-size: 10px; height: 20px;">Fornecedor</th>
                         </tr>
-        ${this.products.map((item) => {
-                        return `<tr>
-                            <td>${item.id}</td>
-                            <td>${item.name}</td>
-                            <td>${item.amount}</td>
-                            <td>${item.supplier}</td>
-                        </tr>`;
-                    }).join('')}
-    </table>`, 10, 10);
+                        ${this.products.map((item, i) => {
+                            return `<tr>
+                                <td>${i + 1}</td>
+                                <td>${item.name}</td>
+                                <td>${item.amount}</td>
+                                <td>${item.supplier}</td>
+                            </tr>`;
+                        }).join('')}
+                    </table>`, 10, 10);
 
                     doc.save('relatorio.pdf');
-
                 }
             },
             watch: {
