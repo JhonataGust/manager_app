@@ -192,4 +192,28 @@ body {
   background: transparent;
 }
 
+.btn_group {
+  display: flex;
+  flex-direction: row nowrap;
+  width: 100%;
+}
+.btn_group .v-card-actions {
+  width: 50%;
+}
+.btn_group .v-card-actions .v-btn {
+  background-color: #000035;
+  color: #03C6B8;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.705);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn_group .v-card-actions .v-btn:hover {
+  opacity: 75%;
+}
+
+.v-label.v-field-label {
+  color: #03C6B8;
+}
+
 /*# sourceMappingURL=index.css.map */

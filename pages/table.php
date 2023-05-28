@@ -40,12 +40,20 @@
             <v-text-field label="Fornecedor" variant="solo" v-model='p_supplier'></v-text-field>
             <v-textarea label="Descrição" auto-grow variant="outlined" rows="3" row-height="25" shaped
                 v-model='p_description'></v-textarea>
-            <v-card-actions>
-                <v-btn color="green" block @click="createProduct">Salvar</v-btn>
-            </v-card-actions>
-            <v-card-actions>
-                <v-btn color="primary" block @click="dialog = false">Cancelar</v-btn>
-            </v-card-actions>
+            <div class="btn_group">
+                <v-card-actions>
+                    <v-btn  block @click="createProduct">
+                        <span class="material-symbols-outlined">save</span>
+                        <p>Salvar</p>
+                    </v-btn>
+                </v-card-actions>
+                <v-card-actions>
+                    <v-btn block @click="dialog = false">
+                        <span class="material-symbols-outlined">close</span>
+                        <p>Cancelar</p>
+                    </v-btn>
+                </v-card-actions>
+            </div>
         </v-card>
     </v-dialog>
 </div>

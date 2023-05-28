@@ -211,3 +211,38 @@ body {
         background: transparent;
     }
 }
+
+.btn_group {
+    display: flex;
+    flex-direction: row nowrap;
+    width: 100%;
+
+    .v-card-actions {
+        width: 50%;
+
+        .v-btn {
+            background-color: variables.$third-color;
+            color: variables.$primary-color;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.705);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                opacity: 75%;
+            }
+        }
+    }
+}
+
+.v-field__field {
+    
+}
+
+.v-label.v-field-label {
+    color: variables.$primary-color;
+}
+
+.v-field__input {
+
+}
