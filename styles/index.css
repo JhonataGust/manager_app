@@ -116,4 +116,71 @@ body {
   color: rgb(177, 47, 47);
 }
 
+.main_page {
+  width: 1230px;
+  margin: 150px auto;
+  padding: 20px;
+}
+.main_page .log_out {
+  cursor: pointer;
+  color: white;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+.main_page .log_out .material-symbols-outlined {
+  color: white;
+}
+.main_page .log_out .log_out-phrase {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: -5px;
+}
+.main_page .v-slide-group__content {
+  background-color: #03C6B8;
+}
+
+.table-container {
+  overflow-y: auto;
+  width: 100%;
+}
+.table-container .table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  border-collapse: collapse;
+}
+.table-container .table .header {
+  background-color: #000035;
+  color: #03C6B8;
+}
+.table-container .table .header {
+  font-weight: bold;
+}
+.table-container .table .row {
+  display: flex;
+}
+.table-container .table .cell {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+  border: 0.5px solid #034B69;
+}
+.table-container .btn_create {
+  margin-bottom: 10px;
+  background-color: #000035;
+  color: #03C6B8;
+  display: flex;
+  align-items: center;
+}
+.table-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
 /*# sourceMappingURL=index.css.map */

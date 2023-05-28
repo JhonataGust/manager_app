@@ -1,5 +1,7 @@
 <div class="table-container">
-    <v-btn style="margin:30px;" @click='dialog = true'>Criar Produto
+    <v-btn class="btn_create" @click='dialog = true'>
+        <span class="material-symbols-outlined">add</span>
+        Criar Produto
     </v-btn>
     <div class="table">
         <div class="row header">

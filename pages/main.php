@@ -1,9 +1,12 @@
 <section class="main_page">
-    <div class="log_out" @click='destroySession'>Log Out</div>
-    <v-card>
+    <div class="log_out" @click='destroySession'>
+        <span class="material-symbols-outlined">logout</span>
+        <p class="log_out-phrase">Log out</p>
+    </div>
+    <v-card class="primary_card">
         <v-tabs v-model="tab" bg-color="primary">
             <v-tab value="one">Produtos</v-tab>
-            <v-tab value="two"> Historico de Mudanças</v-tab>
+            <v-tab value="two"> Histórico de Mudanças</v-tab>
             <v-tab value="three">Item Three</v-tab>
         </v-tabs>
         <v-card-text>

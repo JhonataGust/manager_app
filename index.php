@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Manager App</title>
 </head>
 
@@ -80,17 +81,21 @@
                     }, time)
                 },
                 loginAccount() {
-                    const formData = new FormData();
-                    formData.append('cnpj', this.form_cnpj);
-                    formData.append('password', this.form_password);
-                    axios.post(`${this.url}/ajax/user_handle.php`, formData)
-                        .then((response) => {
-                            if (response.data.success == true) {
-                                window.location.href = this.url
-                            } else {
-                                this.showAlert('error', 1000)
-                            }
-                        })
+                    if (this.form_cnpj.length <= 0 || this.form_password.length <= 0) {
+                        alert("You must fill the inputs bellow!")
+                    } else {
+                        const formData = new FormData();
+                        formData.append('cnpj', this.form_cnpj);
+                        formData.append('password', this.form_password);
+                        axios.post(`${this.url}/ajax/user_handle.php`, formData)
+                            .then((response) => {
+                                if (response.data.success == true) {
+                                    window.location.href = this.url
+                                } else {
+                                    this.showAlert('error', 1000)
+                                }
+                            })
+                    }
                 },
                 createAccount() {
                     const formData = new FormData();
