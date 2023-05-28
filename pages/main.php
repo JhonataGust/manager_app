@@ -2,7 +2,7 @@
     <a class="aboutUs" href="aboutus.html" target="_blank" rel="external">About Us</a>
     <div class="log_out" @click='destroySession'>
         <span class="material-symbols-outlined">logout</span>
-        <p class="log_out-phrase">Log out</p>
+        <p class="log_out-phrase">Log Out</p>
     </div>
     <v-card class="primary_card">
         <v-tabs v-model="tab" bg-color="primary">
